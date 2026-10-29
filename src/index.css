@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen bg-cream-50 font-sans text-ink-900 antialiased;
+    background-image:
+      radial-gradient(60rem 40rem at 8% -8%, rgba(143, 196, 166, 0.16), transparent 55%),
+      radial-gradient(50rem 36rem at 96% 2%, rgba(248, 199, 119, 0.12), transparent 50%),
+      linear-gradient(180deg, #fbfaf6 0%, #f8f5ee 100%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: rgba(54, 138, 97, 0.2);
+  }
+
+  :focus-visible {
+    outline: none;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+  }
+
+  button,
+  a {
+    touch-action: manipulation;
+  }
+
+  /* 数量输入使用自定义加减按钮，隐藏浏览器原生上下箭头。 */
+  input[type='number'] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    margin: 0;
+    -webkit-appearance: none;
+  }
+
+  /* 搜索框已有自定义清空按钮，隐藏 Safari 的原生按钮避免重复。 */
+  input[type='search']::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+}
+
+@layer components {
+  .field-label {
+    @apply mb-1.5 flex items-center gap-1.5 text-[13px] font-medium text-ink-700;
+  }
+
+  .field-input {
+    @apply w-full rounded-xl border border-ink-900/15 bg-white/70 px-3.5 py-2.5 text-[15px] text-ink-900 shadow-sm outline-none transition placeholder:text-ink-400 hover:border-ink-900/25 focus:border-moss-500 focus:bg-white focus:ring-4 focus:ring-moss-500/10 disabled:cursor-not-allowed disabled:bg-cream-100 disabled:text-ink-500;
+  }
+
+  .field-input-error {
+    @apply border-coral-500/60 focus:border-coral-500 focus:ring-coral-500/10;
+  }
+
+  .panel {
+    @apply rounded-3xl border border-ink-900/[0.07] bg-white/85 shadow-card backdrop-blur-sm;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.18em] text-moss-600;
+  }
+
+  .soft-divider {
+    @apply border-t border-ink-900/[0.07];
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
